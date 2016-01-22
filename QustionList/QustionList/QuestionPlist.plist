@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>面试题一</key>
+	<dict>
+		<key>scrollView轮播图片</key>
+		<string>http://www.cocoachina.com/ios/20150806/12879.html 1.加在图片数据，获取图片总数，设置pageCcontroll 2.scrollView上面生成3个IamgeView,设置scrollview的偏移量一直为第二张，也就是中间那张图片 3.中间图片为当前显示图片，left为(currentIndex-1 + count)%count, right为（currentIndex + 1）%count  4.scroll停止滚动后，重新设置三张图片，并设置偏移量为中间图片</string>
+		<key>MVVM是什么，请简述MVVM的特点以及解决了哪些问题</key>
+		<string>M(Model)V(View)VM(ViewModel)，是一种View层的架构模式，衍生自MVC。
+特点：把数据加工的任务从Controller中移到了ViewModel，使得Controller只需要专注于数据调配的工作，ViewModel则去负责数据加工并通过通知机制让View响应ViewModel的改变。
+目标：为MVC中的Controller减负</string>
+		<key>如何衡量ViewController的规模</key>
+		<string>http://www.iosxxx.com/blog/2015/07/26/mvvmshi-zhan-ying-yong-tableview/</string>
+		<key>iOS 8 Extensions</key>
+		<string>http://www.cnblogs.com/xdream86/p/3855932.html</string>
+		<key>NSOperationQueue</key>
+		<string>1.NSOperation:NSInvocationOperation(较少使用);NSBlockOperation(常) 如果NSOperation不加到NSOperationQueue则是在当前线程执行，否则在新线程执行 http://www.cnblogs.com/mddblog/p/4816875.html http://blog.cnbluebox.com/blog/2014/07/01/cocoashen-ru-xue-xi-nsoperationqueuehe-nsoperationyuan-li-he-shi-yong/</string>
+		<key>简述GCD是如何简化线程编程的</key>
+		<string>1.GCD的API很大程度上基于block，2.（高速）GCD自动根据系统负载（比例内存使用情况、CPU个数）来增减线程数量 3.太多线程导致消耗大量内存 4.数据竞争dispatch_barrier_async</string>
+		<key>Objective-C如何对内存管理的，有哪些情况会导致崩溃</key>
+		<string>当App收到三次内存警告还不做处理时，会造成闪退。,访问一个已经释放的资源，会崩溃，用weak,自动为nil，可以向nil发送消息
+处理方法：在didReceiveMemoryWarning内释放不必要的资源</string>
+		<key>将一个MRC的项目转换为ARC的项目，应该遵循什么规则？</key>
+		<string>retain, release, autorelease, dealloc由编译器自动插入，不能在代码中调用. 只要对象的持有者存在（对象被强参照），那么就可以使用该对象
+对象失去了持有者后，即被破弃
+dealloc虽然可以被重载，但是不能调用[super dealloc]</string>
+		<key>ARC下什么时候使用Strong，什么时候使用Weak，如何避免循环引用？</key>
+		<string>ARC下，是Xcode编译器自动判断是否有强指针引用着对象，从而自动帮我们在恰当的位置加上引用计数加一或减一的代码。使用Strong就表明这个OC对象是被使用强指针引用的。
+因此，我们自己定义的需要使用的OC属性（UI控件除外）时，一般使用Strong；UI控件一般使用weak，因为在UI控件通常被父控件的subViews数组强引用着。
+首先，循环引用的意思是两个对象互相强引用着(或者多个对象引用循环)，造成互相都无法释放，将一方改为weak引用可以避免循环引用</string>
+		<key>NSPersistentStoreCoordinator\NSManagedObjectContext和NSManagedObject三者什么关系</key>
+		<string>1，应用程序先创建或读取模型文件（后缀为xcdatamodeld）生成 NSManagedObjectModel 对象。Document应用程序是一般是通过 NSDocument 或其子类 NSPersistentDocument）从模型文件（后缀为 xcdatamodeld）读取。
+2，然后生成 NSManagedObjectContext 和 NSPersistentStoreCoordinator 对象，前者对用户透明地调用后者对数据文件进行读写。
+3，NSPersistentStoreCoordinator 负责从数据文件(xml, sqlite,二进制文件等)中读取数据生成 Managed Object，或保存 Managed Object 写入数据文件。
+4，NSManagedObjectContext 参与对数据进行各种操作的整个过程，它持有 Managed Object。我们通过它来监测 Managed Object。监测数据对象有两个作用：支持 undo/redo 以及数据绑定。这个类是最常被用到的。
+5，Array Controller, Object Controller, Tree Controller 这些控制器一般与 NSManagedObjectContext 关联，因此我们可以通过它们在 nib 中可视化地操作数据对象\n http://blog.csdn.net/kesalin/article/details/6739319</string>
+		<key>VCL是什么</key>
+		<string>可视化语言 每句前面都要加@&quot;H:&quot;或者@&quot;V:&quot;,分别代表着水平和垂直方向
+@&quot;|&quot;代表着边界,很形象哈
+@&quot;-&quot;用来表示间隙，一般以这样的形式出现@&quot;-20-&quot;,这代表20的间距，也可以填写标识，如@&quot;-margin-&quot;，之后设置替换参数metrics，同级view为8，superview为20
+@&quot;[]&quot;中括号里放的就是要添加约束的View，如上边例子的redView，想要设置宽度或者度，就这样[redView(50)]，水平方向（H：）填写这个数字代表的就是宽，垂直方向就是高（V：）
+            http://www.cocoachina.com/ios/20141209/10549.html</string>
+	</dict>
+	<key>面试题二</key>
+	<dict>
+		<key>僵尸变量</key>
+		<string>经常会遇到EXC_BAD_ACCESS这个错误，已经释放的地址又被重新访问内存，</string>
+		<key>UIResponder 和 hitTest</key>
+		<string>1.触摸时间触摸在哪个view上面，先通过pointInside找到则返回YES，否则返回No,（其中userenable=no,enable= no,alpha &lt;0.01的情况直接返回NO） 2.如果pointInside返回YES，则view的hitTest方法就返回view 3.找到最上层的触摸的view后，就开始响应事件，传递顺序view-&gt;superview-&gt;controller-&gt;window&lt;application(如果到响应 链结束还没有处理触摸touch事件，就返回nil，如果当前view处理了touch事件，还要父类也响应touch时间，只要在touch方法里面调用super)   1.shake事件是没有hittest步骤的，如果当前view没有被声明为第一响应者，默认为当前的控制器 2.根据响应链找到处理为止 http://www.jianshu.com/p/2dda99a0e09a</string>
+		<key>下面的代码输出什么？</key>
+		<string>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+@implementation Son : Father
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        NSLog(@&quot;%@&quot;, NSStringFromClass([self class]));
+        NSLog(@&quot;%@&quot;, NSStringFromClass([super class]));
+    }
+    return self;
+}
+@end  都输出son,super是编译器标示符，和self指向同一个消息接受者，只是告诉编译器，调用class方法是，要去父类的方法，而不是本类里，因为都只在NSObject里面找到class方法，objc_msgsend(objc_super-&gt;receiver,@selector(class)),接受者都是objc_getClass(@&quot;Son&quot;)</string>
+		<key>一个objc对象的isa的指针指向什么？有什么作用？</key>
+		<string>指向他的类对象，从而可以找到对象上得方法</string>
+		<key>@synthesize和@dynamic分别有什么作用？</key>
+		<string>1）@property有两个对应的词，一个是@synthesize，一个是@dynamic。如果@synthesize和@dynamic都没写，那么默认的就是@syntheszie var = _var;
+
+2）@synthesize的语义是如果你没有手动实现setter方法和getter方法，那么编译器会自动为你加上这两个方法。
+
+3）@dynamic告诉编译器：属性的setter与getter方法由用户自己实现，不自动生成。（当然对于readonly的属性只需提供getter即可）。假如一个属性被声明为@dynamic var，然后你没有提供@setter方法和@getter方法，编译的时候没问题，但是当程序运行到instance.var = someVar，由于缺setter方法会导致程序崩溃；或者当运行到 someVar = var时，由于缺getter方法同样会导致崩溃。编译时没问题，运行时才执行相应的方法，这就是所谓的动态绑定。</string>
+		<key>static 关键字的作用</key>
+		<string>只作用于当前类的的参数，单利和cell的标示符是很好的例子</string>
+		<key>run time 如何实现weak?</key>
+		<string>例如 id __weak objc = tempObjc; 调用objc_storeWead(&amp;objc, tempObjc) 以tempObjc为key值，将附有weak的objc变量注册到weak表中。如果tempObjc为0，则去表中查找对应的weak，进行释放清空操作</string>
+		<key>@protocl 和category实现property？</key>
+		<string>category: @proterty (strong, nonatomic) nsstring *test; NSString const *key = @&quot;com.haifang.test.key&quot;; - (void)setTest :(NSString *)test {      objc_setAssociatedObject(self, &amp;key, test, OBJC_ASSOCIATION_RETAIN_NONATOMIC); } - (NSString *)test {   return objc_getAssociatedObject(self , &amp;key); }    @protocol TestProtocol&lt;NSObject&gt; @property (nonatomic, strong) NSString*string; @end @interface ViewController : UIViewController&lt;TestProtocl&gt; @property (nonatomic, strong) NSString *string; @end @implementation ViewController @synthesize string;</string>
+		<key>framwork创建步骤</key>
+		<string>1.新建workspace,新建framework,新建app 2.在app设置searchpath 的framework生成路径 3.设置app里面emmbed framework 3.在app的build phase里面设置引用framework， 3.设置workspace 编译生成路径 4.动态framework里面可以放xib文件 5.静态库不可以加载xib,要将xib放在bundle文件里面，并将bundle引用到App的主bundle里面</string>
+		<key>Objective-C如何对内存管理的,说说你的看法和解决方法?</key>
+		<string>ARC/MRC/AutoReleasePool</string>
+		<key>.id 声明的对象有什么特性?</key>
+		<string>运行时特性，可以指向任意类型对象</string>
+		<key>常见的object-c的数据类型有那些， 和C的基本数据类型有什么区别?如：NSInteger和int</key>
+		<string>object-c的数据类型有NSString，NSNumber，NSArray，NSMutableArray，NSData等等，这些都是class，创建后便是对象，而C语言的基本数据类型int，只是一定字节的内存空间，用于存放数值;NSInteger是基本数据类型，并不是NSNumber的子类，当然也不是NSObject的子类。NSInteger是基本数据类型Int或者Long的别名(NSInteger的定义typedef long NSInteger)，它的区别在于，NSInteger会根据系统是32位还是64位来决定是本身是int还是Long。</string>
+		<key>NSString*obj = [[NSData alloc] init]; obj在编译时和运行时分别时什么类型的对象?</key>
+		<string>编译时是NSString的类型;运行时是NSData类型的对象</string>
+		<key>写一个setter方法用于完成@property (nonatomic,retain)NSString *name,写一个setter方法用于完成@property(nonatomic，copy)NSString *name</key>
+		<string>-?(void)?setName:(NSString*)?str
+{
+[str?retain];
+[name?release];
+name?=?str;
+}
+-?(void)setName:(NSString?*)str
+{
+id?t?=?[str?copy];
+[name?release];
+name?=?t;
+}</string>
+		<key>继承和分类</key>
+		<string>1.继承：子类具有父类的属性和特征 2.分类：添加方法 3.用分类的可读性比较好，不会影响其他类</string>
+		<key>什么叫多重继承？面向对象？</key>
+		<string>class A ,class B, class C同时继承A、B 2.1）数据和其行为的打包封装，2）程序的接口和实现的解耦。 举例：人是一个对象，男、女，身高是私有属性，会做什么是事件</string>
+		<key>objective-C对象模型及应用</key>
+		<string>http://blog.devtang.com/blog/2013/10/15/objective-c-object-model/ 每一个对象都有一个ISA指针，指向该对象的类，而类也是一个对象，类的ISA指针都指向元类，元类的ISA指向根元类，根元类的指针指向自己 2.subclass的元类的superclass是superclass的元类，根class的superclass是nil 3.kvo利用isa-swizzling，isa指向中间类，自动添加了willchange，didchangange,auto发送消息的方法 5.method swizzling 方法交换</string>
+		<key>Block是什么</key>
+		<string>http://blog.parse.com/learn/engineering/objective-c-blocks-quiz/ 1.没有截获变量的block是全局block,在全局静态存储区，不会释放 2.保存在堆上的block是malloc block，没有强引用的时候会释放 3.栈block保存在栈上，当blcok函数返回时候，block会立即释放 3、用__block修饰的变量，被block截获时，是将_byref结构体指针拷贝到block结构体中的data中，所以可以访问并修改外部变量 4.没有被__block修饰的变量，是将变量拷贝到block结构体的data中，所以这种情况block只能访问外部变量，不能修改外部变量 5.block的结构分为3部分：isa（mallocBlock）,impl(函数实现func)，descriptor(block附加信息，截获变量)</string>
+		<key>kvo/delegate、nsnotification区别</key>
+		<string>kvo键值监听，观察属性值，只要监听，不需要注册，因为系统自动重写set方法 2.delegate,需要遵从协议，可以获得返回值，方法明确 3.nsnotification 需要向消息中心注册，并且需要发送通知，没有关联模块间比较适合 总结：三个方法实现差不多</string>
+		<key>了解KVC和KVO</key>
+		<string>https://www.zybuluo.com/MicroCai/note/66738 1.KVC 键值编码，setValueForKey 2.KVO,观察键值，就是重写set方法，添加willChange,DidChange,自动发送变化消息</string>
+	</dict>
+	<key>New item - 2</key>
+	<string></string>
+</dict>
+</plist>
